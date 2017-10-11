@@ -15,6 +15,7 @@ This program has 2 execute mode.
 ```bash
 export TODOIST_API_TOKEN=XXXXXX
 export SLACK_WEBHOOK_URL=XXXXXXXXX
+export SLACK_CHANNEL_NAME=XXXXXXXXX
 
 # mode `near`
 cargo run near
