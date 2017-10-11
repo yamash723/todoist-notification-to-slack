@@ -1,7 +1,7 @@
 [package]
-name = "todoist"
-version = "0.1.0"
-authors = ["Shuhei Yamashita <shuhei.yamashita@ozinter.jp>"]
+name = "todoist-notification-to-slack"
+version = "0.0.1"
+authors = ["Shuhei Yamashita <b.e7472@gmail.com>"]
 
 [dependencies]
 reqwest = "0.5.1"
