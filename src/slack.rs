@@ -7,7 +7,7 @@ pub fn notification_to_slack(message: String) {
     let slack = Slack::new(&*slack_webhook_uri).unwrap();
     let p = PayloadBuilder::new()
       .text(fixed_message)
-      .channel("#general")
+      .channel(envs::channel_name())
       .build()
       .unwrap();
 
