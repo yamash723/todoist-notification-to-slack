@@ -6,10 +6,16 @@ use url::Url;
 use types;
 use envs;
 
+pub fn render_projects() -> Vec<types::ProjectStruct> {
+    let resource_type = format!("[\"{}\"]", "projects");
+    let sync_data = execute_render(&resource_type);
+    sync_data.projects.unwrap()
+}
+
 pub fn render_items() -> Vec<types::ItemStruct> {
     let resource_type = format!("[\"{}\"]", "items");
     let sync_data = execute_render(&resource_type);
-    return sync_data.items.unwrap();
+    sync_data.items.unwrap()
 }
 
 fn execute_render(resource_type: &str) -> types::SyncStrust {
@@ -32,5 +38,5 @@ fn execute_render(resource_type: &str) -> types::SyncStrust {
     responce.read_to_string(&mut content).expect("Failed");
 
     let sync_data: types::SyncStrust = serde_json::from_str(&content).unwrap();
-    return sync_data;
+    sync_data
 }

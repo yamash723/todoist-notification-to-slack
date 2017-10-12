@@ -6,6 +6,7 @@ extern crate url;
 extern crate reqwest;
 extern crate chrono;
 extern crate slack_hook;
+extern crate itertools;
 
 use std::env;
 

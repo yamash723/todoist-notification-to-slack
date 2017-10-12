@@ -27,13 +27,13 @@ before_deploy:
   - cargo build --target $TARGET --release
   - mkdir "todoist-notification-to-slack-${TRAVIS_TAG}-${TARGET}"
   - cp target/$TARGET/release/todoist-notification-to-slack README.md "todoist-notification-to-slack-${TRAVIS_TAG}-${TARGET}"
-  - zip "todoist-notification-to-slack-${TRAVIS_TAG}-${TARGET}.gz" -r "todoist-notification-to-slack-${TRAVIS_TAG}-${TARGET}"
+  - zip "todoist-notification-to-slack-${TARGET}.gz" -r "todoist-notification-to-slack-${TRAVIS_TAG}-${TARGET}"
 
 deploy:
   provider: releases
   api_key:
     secure: rFXFuPS0HrBRAVa99+M8cc5M3bxxgp+xlzH+IWDH6dbJs75Yye9AIY5bIubfj0o+ME9vMK+32wvgEqOM78DI7yX0D1BZXkkHuFELh+ABzACGCK/GRf/YJskwdY4ICRFQ83Of7yF1NGaeEG1Y0enxh/fXbvoLCtifT/uk2Y0FlMoTkNIV015dT/NxGqKmksubnqfz8CY7PEvkJdI/EufdrIUazSvLfwcF7h76v6OhDBuh7MOg4oW6/+9nUgtCjrelvEqRabwecSi5FZTHcVh6Xo5Ji5G1T/O3j7zuvDe2FlixEDcpL3bK5XXEAgGW6OE5Qu9yVxc+rLXfFIKmLUEybOv7+g8EkOq/M3lZ6+fn31Yb1+FiN8HRNbPkED4HjoPZD7G2f4awFRpTrZJViXTBd478lF6FhtxuY6k7oemRKh2QqV5KH+4R1wOQVM93uVKI5AoOd08Uj/tSmYgXAd58OdOZbqv36Q0QvdlAoVtpHrTIaq0NJytJ4aCZpkjely4b22qDETAaMEuSyV6nwUz0thMA4mjztVcHN8OPanJjXPelBn0vRsPpBulZ7Nvz+qnOpCc3rGcBPInnKjhfbHxaf+NPblgezSoZG7P2c3ZbgELNdfdfMMGafSKNOhe2kYPP0m5ZlgmQF69TjVkuw2LJeGBAMK+UMaen5NHlmgVIf38=
-  file: todoist-notification-to-slack-${TRAVIS_TAG}-${TARGET}.gz
+  file: todoist-notification-to-slack-${TARGET}.gz
   skip_cleanup: true
   on:
     repo: yamash723/todoist-notification-to-slack

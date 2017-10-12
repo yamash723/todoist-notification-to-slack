@@ -1,6 +1,6 @@
 [package]
 name = "todoist-notification-to-slack"
-version = "0.0.1"
+version = "0.0.3"
 authors = ["Shuhei Yamashita <b.e7472@gmail.com>"]
 
 [dependencies]
@@ -10,6 +10,7 @@ serde_derive = "1.0.2"
 serde_json = "1.0"
 chrono = "0.4"
 slack-hook = "0.6"
+itertools = "0.7.0"
 
 [dependencies.url]
 git = "https://github.com/servo/rust-url"

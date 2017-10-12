@@ -1,6 +1,7 @@
 use types;
 use todoist;
 use slack;
+use itertools::Itertools;
 
 pub fn check_naring_due_date() {
     println!("Execute task 'check_naring_due_date'");
@@ -47,9 +48,32 @@ fn get_past_due_date_items() -> Vec<types::ItemStruct> {
 }
 
 fn send_slack(info: String, items: Vec<types::ItemStruct>) {
+    let projects = todoist::render_projects();
+
+    let get_project_name = |id: u32| -> String {
+        let projects = &projects;
+        projects.into_iter()
+                .find(|p| p.id == id)
+                .expect("undefine project!!").name.clone()
+    };
+
+    // #{project_name}
+    //     YYYY-mm-dd HH:MM:SS - {task_name}
+    //     YYYY-mm-dd HH:MM:SS - {task_name}
     let mut message = format!("{}\n\n", info);
-    for item in items.into_iter() {
-        message = format!("{}{}\n", message, &item.content);
+    for (key, list) in &items.into_iter().group_by(|item| item.project_id) {
+        let project_name = get_project_name(key);
+        message = format!("{}# {}\n", message, &project_name);
+
+        for item in list {
+            message = format!(
+                "{}    {} - {}\n",
+                message,
+                &item.display_due_date_utc(),
+                &item.content
+            );
+        }
     }
+
     slack::notification_to_slack(message);
 }
