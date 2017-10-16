@@ -21,13 +21,14 @@ fn main() {
     println!("Execute path is {}.", args[0]);
 
     if args.iter().count() <= 1 {
-        panic!("Not set Execute mode params! please set `near` or `past`");
+        panic!("Not set Execute mode params! please set `near` or `past` or `today`");
     }
 
     let mode = &args[1];
     match mode.as_ref() {
         "near" => tasks::check_naring_due_date(),
         "past" => tasks::check_past_due_date(),
-        _ => panic!("Execute mode is wrong! please set `near` or `past`")
+        "today" => tasks::check_today_due_date(),
+        _ => panic!("Execute mode is wrong! please set `near` or `past` or `today`")
     }
 }

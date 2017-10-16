@@ -5,12 +5,14 @@ Would you like to explain the operation?
 
 ## Usage
 
-This program has 2 execute mode.
+This program has 3 execute mode.
 
 * near
-    * nearing(within 5 min) due date tasks name send to slack.
+    * nearing(within 5 min) due date tasks send to slack.
 * past
-    * passed due date tasks name send to slack.
+    * passed due date tasks send to slack.
+* today
+    * today's tasks send to slack
 
 ```bash
 export TODOIST_API_TOKEN=XXXXXX
@@ -22,4 +24,7 @@ cargo run near
 
 # mode `past`
 cargo run past
+
+# mode `today`
+cargo run today
 ```

@@ -40,7 +40,7 @@ impl ItemStruct {
 
     pub fn is_nearing_due_date(&self) -> bool {
         let due_date_utc = match self.parsed_due_date_utc() {
-            Ok(date) => date,
+            Ok(date) => date.with_timezone(&FixedOffset::east(9*3600)),
             Err(_) => return false
         };
         
@@ -52,11 +52,21 @@ impl ItemStruct {
 
     pub fn is_past_due_date(&self) -> bool {
         let due_date_utc = match self.parsed_due_date_utc() {
-            Ok(date) => date,
+            Ok(date) => date.with_timezone(&FixedOffset::east(9*3600)),
             Err(_) => return false
         };
 
         let now_date = Utc::now().with_timezone(&FixedOffset::east(9*3600));
         due_date_utc < now_date
+    }
+
+    pub fn is_today_due_date(&self) -> bool {
+        let due_date_utc = match self.parsed_due_date_utc() {
+            Ok(date) => date.with_timezone(&FixedOffset::east(9*3600)),
+            Err(_) => return false
+        };
+
+        let now_date = Utc::now().with_timezone(&FixedOffset::east(9*3600));
+        due_date_utc.day() == now_date.day()
     }
 }
