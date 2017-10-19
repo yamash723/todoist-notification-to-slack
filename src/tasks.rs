@@ -40,7 +40,8 @@ pub fn check_today_due_date() {
     let item_count: usize = items.iter().count();
 
     if item_count >= 1 {
-        let info = format!("{} tasks is today due date.", item_count);
+        let greeting = "I'm Standalone battale supprt unit - ADA.";
+        let info = format!("{}\n\n{} tasks is today due date.", greeting, item_count);
         println!("{}", info);
         send_slack(info, items);
     } else {
