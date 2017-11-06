@@ -33,7 +33,7 @@ impl ItemStruct {
     pub fn display_due_date_utc(&self) -> String {
         match self.parsed_due_date_utc() {
             Ok(s) => s.with_timezone(&FixedOffset::east(9*3600))
-                      .format("%Y-%m-%d %H:%M:%S").to_string(),
+                      .format("%m-%d %H:%M").to_string(),
             Err(_) => String::new()
         }
     }
